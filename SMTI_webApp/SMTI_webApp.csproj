@@ -33,6 +33,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -90,6 +91,7 @@
     <Compile Include="mainPageSMTI.aspx.designer.cs">
       <DependentUpon>mainPageSMTI.aspx</DependentUpon>
     </Compile>
+    <Compile Include="ProjectsClass.cs" />
     <Compile Include="ProjectsForm.aspx.cs">
       <DependentUpon>ProjectsForm.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -99,6 +101,7 @@
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SqlConnClass.cs" />
+    <Compile Include="StudentsClass.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

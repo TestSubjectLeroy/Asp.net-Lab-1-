@@ -69,19 +69,28 @@
         </div>
         <div class="col-sm-11">
             <h5>His Projects:</h5>
-            <asp:GridView ID="gvThisStudentProjects" AutoGenerateColumns="false" runat="server">
+            <asp:GridView ID="gvThisStudentProjects" AutoGenerateColumns="False" runat="server" BackColor="LightGoldenrodYellow" BorderColor="Tan" BorderWidth="1px" CellPadding="2" ForeColor="Black" GridLines="None">
+                 <AlternatingRowStyle BackColor="PaleGoldenrod" />
                  <Columns>
                     <asp:BoundField DataField = "Project_Code" HeaderText="Project Code" />
                     <asp:BoundField DataField = "Project_Title" HeaderText="Project Title" />
                     <asp:BoundField DataField = "Due_Date" HeaderText="Due Date" DataFormatString="{0:yyyy/MM/dd}" /> 
                     <asp:TemplateField HeaderText="Options">
                             <ItemTemplate>
-                             <asp:LinkButton id="LnkRemove" CssClass="btn btn-xs btn-danger"  CommandArgument='<%# Eval("Project_Code") %>' runat="server" OnClientClick="return confirm('Are you sure you want to Remove this Project ?')" >Remove</asp:LinkButton>
+                             <asp:LinkButton id="LnkRemove" CssClass="btn btn-xs btn-default"  CommandArgument='<%# Eval("Project_Code") %>' runat="server" OnClick="lnkRemove_OnClick" OnClientClick="return confirm('Are you sure you want to Remove this Project ?')" >Remove</asp:LinkButton>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
 
                 </Columns>
+                 <FooterStyle BackColor="Tan" />
+                 <HeaderStyle BackColor="Tan" Font-Bold="True" />
+                 <PagerStyle BackColor="PaleGoldenrod" ForeColor="DarkSlateBlue" HorizontalAlign="Center" />
+                 <SelectedRowStyle BackColor="DarkSlateBlue" ForeColor="GhostWhite" />
+                 <SortedAscendingCellStyle BackColor="#FAFAE7" />
+                 <SortedAscendingHeaderStyle BackColor="#DAC09E" />
+                 <SortedDescendingCellStyle BackColor="#E1DB9C" />
+                 <SortedDescendingHeaderStyle BackColor="#C2A47B" />
             </asp:GridView>
         </div>
       </div>
@@ -132,18 +141,28 @@
             <hr />
              <div class="col-sm-11" >
                  <h2>Project Available</h2>
-                  <asp:GridView ID="gvProjects" runat="server" AutoGenerateColumns="False" >
+                  <asp:GridView ID="gvProjects" runat="server" AutoGenerateColumns="False" BackColor="White" BorderColor="#999999" BorderStyle="None" BorderWidth="1px" CellPadding="3" GridLines="Vertical" >
+                      <AlternatingRowStyle BackColor="#DCDCDC" />
                 <Columns>
                     <asp:BoundField DataField = "Project_Code" HeaderText="Project Code" />
                     <asp:BoundField DataField = "Project_Title" HeaderText="Project Title" />
                     <asp:BoundField DataField = "Due_Date" HeaderText="Due Date" DataFormatString="{0:yyyy/MM/dd}" /> 
                        <asp:TemplateField HeaderText="Options">
                             <ItemTemplate>
-                             <asp:LinkButton id="LnkAdd" CssClass="btn btn-xs btn-success"  CommandArgument='<%# Eval("Project_Code") %>' runat="server"  OnClientClick="return confirm('Are you sure you want to Add this Projects ?')" >Add</asp:LinkButton>
+                             <asp:LinkButton id="LnkAdd" CssClass="btn btn-xs btn-default"  CommandArgument='<%# Eval("Project_Code") %>' runat="server" OnClick="LnkAdd_OnClick"  OnClientClick="return confirm('Are you sure you want to Add this Projects ?')" >Add</asp:LinkButton>
                             </ItemTemplate>
                             <HeaderStyle HorizontalAlign="Center" />
                         </asp:TemplateField>
                        </Columns>
+                      <FooterStyle BackColor="#CCCCCC" ForeColor="Black" />
+                      <HeaderStyle BackColor="#000084" Font-Bold="True" ForeColor="White" />
+                      <PagerStyle BackColor="#999999" ForeColor="Black" HorizontalAlign="Center" />
+                      <RowStyle BackColor="#EEEEEE" ForeColor="Black" />
+                      <SelectedRowStyle BackColor="#008A8C" Font-Bold="True" ForeColor="White" />
+                      <SortedAscendingCellStyle BackColor="#F1F1F1" />
+                      <SortedAscendingHeaderStyle BackColor="#0000A9" />
+                      <SortedDescendingCellStyle BackColor="#CAC9C9" />
+                      <SortedDescendingHeaderStyle BackColor="#000065" />
             </asp:GridView> 
              </div>
          </div>

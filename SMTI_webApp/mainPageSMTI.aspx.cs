@@ -31,7 +31,7 @@ namespace SMTI_webApp
         {
 
 
-            SqlConnClass saveNow = new SqlConnClass();
+            StudentsClass saveNow = new StudentsClass();
             saveNow.AddNewStudent(txtStudentNumber.Text.Trim(), txtFirstName.Text.Trim(), txtLastName.Text.Trim(), txtEmail.Text.Trim());
             gvStudents.DataSource = saveNow.RetrieveAllStudentsInfo();
             gvStudents.DataBind();
@@ -43,7 +43,7 @@ namespace SMTI_webApp
 
             string stNum = (sender as LinkButton).CommandArgument;
 
-            SqlConnClass viewStudent = new SqlConnClass();
+            StudentsClass viewStudent = new StudentsClass();
             DataTable theStudent = viewStudent.ViewSingleStudent(stNum);
 
             txtStudentNumber.Text = theStudent.Rows[0]["StudentNumber"].ToString().Trim();
@@ -61,7 +61,7 @@ namespace SMTI_webApp
         {
             string stNum = (sender as LinkButton).CommandArgument;
 
-            SqlConnClass viewStudent = new SqlConnClass();
+            StudentsClass viewStudent = new StudentsClass();
 
             viewStudent.DeleteSingleStudent(stNum);
             StadardStatus();
@@ -89,28 +89,54 @@ namespace SMTI_webApp
 
             string stNum = (sender as LinkButton).CommandArgument;
 
-            SqlConnClass viewStudentProject = new SqlConnClass();
+            StudentsClass viewStudentProject = new StudentsClass();
             gvThisStudentProjects.DataSource  = viewStudentProject.hisProjects(stNum);
             gvThisStudentProjects.DataBind();
 
-            var FillTableProjects = new SqlConnClass();
+            var FillTableProjects = new ProjectsClass();
             gvProjects.DataSource = FillTableProjects.RetrieveAllProjectsInfo();
             gvProjects.DataBind();
 
-            SqlConnClass viewStudentInfo = new SqlConnClass();
+            StudentsClass viewStudentInfo = new StudentsClass();
             DataTable theStudent = viewStudentInfo.ViewSingleStudent(stNum);
+
 
             txtStudentNumber.Text = theStudent.Rows[0]["StudentNumber"].ToString().Trim();
             txtFirstName.Text = theStudent.Rows[0]["FirstName"].ToString();
             txtLastName.Text = theStudent.Rows[0]["LastName"].ToString();
             txtEmail.Text = theStudent.Rows[0]["Email"].ToString();
 
+
             DisableBox(true);
-
-
         }
 
+        protected void LnkAdd_OnClick(object sender, EventArgs e) {
 
+            string pjCode = (sender as LinkButton).CommandArgument;
+            string pjSNum = txtStudentNumber.Text;
+
+            var addingIt = new ProjectsClass();
+            addingIt.AddProjectToStudent(pjCode, pjSNum);
+
+            StudentsClass viewStudentProject = new StudentsClass();
+            gvThisStudentProjects.DataSource = viewStudentProject.hisProjects(pjSNum);
+            gvThisStudentProjects.DataBind();
+
+         }
+
+        protected void lnkRemove_OnClick(object sender, EventArgs e) {
+
+            string pjCode = (sender as LinkButton).CommandArgument;
+            string pjSNum = txtStudentNumber.Text;
+
+            var removingIt = new ProjectsClass();
+
+            removingIt.DeleteProjectOfStudent(pjCode, pjSNum);
+            StudentsClass viewStudentProject = new StudentsClass();
+            gvThisStudentProjects.DataSource = viewStudentProject.hisProjects(pjSNum);
+            gvThisStudentProjects.DataBind();
+
+        }
 
 
 
@@ -155,7 +181,7 @@ namespace SMTI_webApp
             DisableBox(true);
             ButtonStatus(true, false);
 
-            var FillTableStudent = new SqlConnClass();
+            var FillTableStudent = new StudentsClass();
             gvStudents.DataSource = FillTableStudent.RetrieveAllStudentsInfo();
             gvStudents.DataBind();
         }
